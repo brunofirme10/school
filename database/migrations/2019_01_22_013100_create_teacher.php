@@ -14,7 +14,10 @@ class CreateTeacher extends Migration
     public function up()
     {
         Schema::create('teachers', function (Blueprint $table) {
+            $table->engine = "MyISAM";
             $table->increments('id');
+            $table->string('name');
+            $table->enum('knowledge', ['english', 'portuguese', 'biology']);
             $table->timestamps();
         });
     }

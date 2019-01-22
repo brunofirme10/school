@@ -14,7 +14,12 @@ class CreateStudent extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
+            $table->engine = "MyISAM";
             $table->increments('id');
+            $table->unsignedInteger("team_id");
+            $table->foreign("team_id")->references("id")->on("teams")->onDelete("cascade");
+            $table->string('name');
+            $table->date('born_at')->nullable();
             $table->timestamps();
         });
     }

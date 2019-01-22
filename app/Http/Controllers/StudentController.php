@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $student = Student::all()->sortBy('nome');
-        return view('student.index', compact('students'));
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        return view('students.create');
     }
 
     /**

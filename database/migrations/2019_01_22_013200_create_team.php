@@ -14,22 +14,14 @@ class CreateTeam extends Migration
     public function up()
     {
         Schema::create('teams', function (Blueprint $table) {
+            $table->engine = "MyISAM";
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->date('dateOfBirth');
-            $table->string('place');
-            $table->string('city');
-            $table->string('personLegally');
-            $table->foreign('teams_id')
-            ->unsigned()
-            ->nullable()
-            ->references('id')
-            ->on('team');
-            $table->foreign('teacher_id')
-            ->unsigned()
-            ->nullable()
-            ->references('id')
-            ->on('teacher');
+            $table->unsignedInteger("teacher_id");
+            $table->foreign("teacher_id")->references("id")->on("teachers")->onDelete("cascade");
+            $table->smallInteger('min_students')->default(5); // número mínimo de estudantes por turma
+            $table->smallInteger('max_students')->default(10); // número máximo de estudantes por turma
+            $table->string('slug')->unique();
+            $table->string('title');
             $table->timestamps();
         });
     }
