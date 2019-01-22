@@ -13,6 +13,10 @@ class Student extends Model
 		'born_at',
 	];
 
+	/**
+	 * relacionamento da tabela students com a tabela teams
+	 * @return object
+	 */
 	public function team()
 	{
 		return $this->hasOne(Team::class, "id", "team_id");

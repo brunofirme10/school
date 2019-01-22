@@ -15,6 +15,10 @@ class Team extends Model
 		'title',
 	];
 
+	/**
+	 * relacionamento da teams students com a tabela teachers
+	 * @return object
+	 */
 	public function teacher()
 	{
 		return $this->hasOne(Teacher::class, "id", "teacher_id");
