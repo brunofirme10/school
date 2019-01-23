@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-header">
                 Listar estudantes
-                <a href="{{ url('students/add') }}" class="btn btn-primary btn-sm float-right">Novo</a>
+                <a href="{{ url('students/add') }}" class="btn btn-primary btn-sm float-right">Adicionar novo estudante</a>
             </div>
             <div class="card-body p-0">
 @if($students->count() > 0)
