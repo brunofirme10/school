@@ -12,11 +12,15 @@
             line-height: 30px;
         }
     </style>
-
 @endsection
-
+@section('javascript')
+    <script type="text/javascript">
+        function validate_delete() {
+            return confirm('Excluir o registro atual? Essa ação não pode ser desfeita.');
+        }
+    </script>
+@endsection
 @section('content')
-
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -63,5 +67,4 @@
             </div>
         </div>
     </div>
-
 @endsection

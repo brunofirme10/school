@@ -46,10 +46,10 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show(Teacher $teacher, int $id)
     {
         $teacher = Teacher::find($id);
-        return view('teachers.show', ['name' => $teacher]);
+        return view('teachers.show', compact('teacher'));
     }
 
     /**
@@ -58,10 +58,10 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit(Teacher $teacher, int $id)
     {
         $teacher = Teacher::find($id);
-        return view('teachers.edit', ['name' => $teacher]);
+        return view('teachers.edit', compact('teacher'));
     }
 
     /**
@@ -71,12 +71,12 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Teacher $teacher, int $id)
     {
         $teacher = Teacher::find($id);
         $teacher->fill($request->all());
         $teacher->update();
-        return redirect('teachers');
+        return redirect('teacher');
     }
 
     /**
@@ -85,7 +85,7 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Teacher $teacher, int $id)
     {
         Teacher::destroy($id);
         return redirect('teachers');

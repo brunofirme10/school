@@ -8,10 +8,8 @@
                     <div class="card-header">Editar estudante</div>
                     <form action="{{ url('students/'.$student->id) }}" method="post" enctype="multipart/form-data">
                         <div class="card-body">
-                            @method('PUT')
-
-                            @csrf
-
+                            <input type="hidden" name="_method" value="PUT" />
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="form-group">
                                 <label for="name">Nome completo</label>
                                 <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name', $student->name) }}" id="name" name="name" />

@@ -21,4 +21,14 @@ class Teacher extends Model
 		return $this->hasMany(Team::class, "teacher_id", "id");
 	}
 
+	public function getKnowledge()
+	{
+		$knowledges = [
+			'english' => 'Inglês',
+			'portuguese' => 'Português',
+			'biology' => 'Biologia',
+		];
+		return $knowledges[$this->knowledge];
+	}
+
 }
