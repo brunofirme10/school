@@ -38,6 +38,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+       
+        /*validação dos campos server side*/ 
+        $this->validate($request,[ 
+            'born_at' => 'required', 
+            'name' => 'required|max:255',
+            ]); 
+        
         $student = Student::create($request->all());
         return redirect('students');
     }
@@ -76,6 +83,12 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student, int $id)
     {
+        /*validação dos campos server side*/ 
+        $this->validate($request,[ 
+            'born_at' => 'required', 
+            'name' => 'required|max:255',
+            ]); 
+        
         $student = Student::find($id);
         $student->fill($request->all());
         $student->update();

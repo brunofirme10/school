@@ -39,6 +39,11 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        /*validação dos campos server side*/ 
+        $this->validate($request,[ 
+            'title' => 'required|max:255',
+            ]); 
+        
         $team = Team::create($this->dataToStore($request));
         return redirect('teams');
     }
@@ -90,6 +95,11 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team, int $id)
     {
+        /*validação dos campos server side*/ 
+        $this->validate($request,[ 
+            'title' => 'required|max:255',
+            ]); 
+        
         $team = Team::find($id);
         $team->fill($this->dataToStore($request));
         $team->update();

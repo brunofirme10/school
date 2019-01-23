@@ -12,12 +12,12 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="form-group">
                                 <label for="name">Nome do professor</label>
-                                <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name', $teacher->name) }}" id="name" name="name" />
+                                <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name', $teacher->name) }}" id="name" name="name" required min:3 max:255/>
                                 <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                             </div>
                             <div class="form-group">
                                 <label for="knowledge">Matéria de conhecimento</label>
-                                <select class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" id="knowledge" name="knowledge">
+                                <select class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" id="knowledge" name="knowledge" required>
                                     <option selected disabled>Escolha uma matéria de conhecimento</option>
 @foreach($knowledges as $k => $v)
 @if($teacher->knowledge == $k)
@@ -40,3 +40,12 @@
         </div>
     </div>
 @endsection
+
+<!-- Validação dos formulários client side -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+<script src="/js/jqBootstrapValidation.js"></script>
+
+<script>
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
