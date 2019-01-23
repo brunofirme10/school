@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
+use Ausi\SlugGenerator\SlugGenerator;
 
 class TeamController extends Controller
 {
@@ -14,7 +15,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = Team::all()->sortBy('title');
+        $teams = Team::all()->sortBy('title');
         return view('teams.index', compact('teams'));
     }
 
@@ -36,8 +37,21 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $team = Team::create($request->all());
+        $team = Team::create($this->dataToStore($request));
         return redirect('teams');
+    }
+
+    /**
+     * Adiciona o SLUG no array para salvar
+     * @param array $request
+     * @return array
+     */
+    public function dataToStore($request)
+    {
+        $all = $request->all();
+        $generator = new SlugGenerator;
+        $slug = $generator->generate($all["title"]);
+        return array_merge($request->all(), ["slug" => $slug]);
     }
 
     /**
@@ -46,10 +60,10 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(Team $team, int $id)
     {
         $team = Team::find($id);
-        return view('teams.show', ['title' => $team]);
+        return view('teams.show', compact('team'));
     }
 
     /**
@@ -58,10 +72,10 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(Team $team, int $id)
     {
         $team = Team::find($id);
-        return view('teams.edit', ['title' => $team]);
+        return view('teams.edit', compact('team'));
     }
 
     /**
@@ -71,10 +85,10 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, Team $team, int $id)
     {
         $team = Team::find($id);
-        $team->fill($request->all());
+        $team->fill($this->dataToStore($request));
         $team->update();
         return redirect('teams');
     }
@@ -85,7 +99,7 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Team $team, int $id)
     {
         Team::destroy($id);
         return redirect('teams');

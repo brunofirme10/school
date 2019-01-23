@@ -27,7 +27,7 @@
                 <div class="table-responsive border-0">
                     <table class="table table-hover" style="margin-bottom: inherit">
                         <tbody>
-                        @foreach ($teams as $team)
+                        @foreach($teams as $team)
                             <tr>
                                 <td><a class='a-line' href="{{ url('teams/'.$team->id) }}">{{ $team->title }}</a></td>
                                 <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('teams/'.$team->id) }}">{{ $team->teacher_id }}</a></td>

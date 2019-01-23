@@ -12,12 +12,12 @@
 
                             <div class="form-group">
                                 <label for="title">Turma</label>
-                                <input type="text" required class="form-control{{$errors->has('title') ? ' is-invalid':''}}" value="{{ old('title', $team->title) }}" id="title" name="title">
+                                <input type="text" required class="form-control{{$errors->has('title') ? ' is-invalid':''}}" value="{{ old('title') }}" id="title" name="title" />
                                 <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                             </div>
                             <div class="form-group">
                                 <label for="teacher">Professor</label>
-                                <input type="text" class="form-control{{$errors->has('teacher_id') ? ' is-invalid':''}}" value="{{ old('teacher_id', $team->teacher_id) }}" id="teacher_id" name="teacher_id">
+                                <input type="text" class="form-control{{$errors->has('teacher_id') ? ' is-invalid':''}}" value="{{ old('teacher_id') }}" id="teacher_id" name="teacher_id" />
                                 <div class="invalid-feedback">{{ $errors->first('teacher_id') }}</div>
                             </div>
                         </div>
