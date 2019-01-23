@@ -16,7 +16,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="knowledge">Matéria de conhecimento</label>
-                                <input type="text" class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" value="{{ old('knowledge') }}" id="knowledge" name="knowledge" />
+                                <select class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" id="knowledge" name="knowledge">
+                                    <option selected disabled>Escolha uma matéria de conhecimento</option>
+@foreach($knowledges as $k => $v)
+                                    <option value="{{ $k }}">{{ $v }}</option>
+@endforeach
+                                </select>
                                 <div class="invalid-feedback">{{ $errors->first('knowledge') }}</div>
                             </div>
                         </div>

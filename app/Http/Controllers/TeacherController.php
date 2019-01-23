@@ -25,7 +25,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teachers.create');
+        $knowledges = new Teacher;
+        $knowledges = $knowledges->getKnowledge(true);
+        return view('teachers.create', compact('knowledges'));
     }
 
     /**
@@ -61,7 +63,9 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher, int $id)
     {
         $teacher = Teacher::find($id);
-        return view('teachers.edit', compact('teacher'));
+        $knowledges = new Teacher;
+        $knowledges = $knowledges->getKnowledge(true);
+        return view('teachers.edit', compact('teacher', 'knowledges'));
     }
 
     /**
@@ -76,7 +80,7 @@ class TeacherController extends Controller
         $teacher = Teacher::find($id);
         $teacher->fill($request->all());
         $teacher->update();
-        return redirect('teacher');
+        return redirect('teachers');
     }
 
     /**

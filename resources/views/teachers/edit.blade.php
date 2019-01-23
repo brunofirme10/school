@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Editar professor</div>
-                    <form action="{{ url('teachers/'.$teacher->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('teachers/'.$teacher->id) }}" method="POST" enctype="multipart/form-data">
                         <div class="card-body">
                             <input type="hidden" name="_method" value="PUT" />
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -17,10 +17,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="knowledge">Matéria de conhecimento</label>
-                                <input type="text" class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" value="{{ old('knowledge', $teacher->knowledge) }}" id="knowledge" name="knowledge" />
+                                <select class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" id="knowledge" name="knowledge">
+                                    <option selected disabled>Escolha uma matéria de conhecimento</option>
+@foreach($knowledges as $k => $v)
+@if($teacher->knowledge == $k)
+                                    <option value="{{ $k }}" selected>{{ $v }}</option>
+@else
+                                    <option value="{{ $k }}">{{ $v }}</option>
+@endif
+@endforeach
+                                </select>
                                 <div class="invalid-feedback">{{ $errors->first('knowledge') }}</div>
                             </div>
-                        </div>
                         </div>
                         <div class="card-footer text-right">
                             <a href="javascript:void(0)" onclick="history.back()" class="btn btn-secondary">Voltar</a>
@@ -31,5 +39,4 @@
             </div>
         </div>
     </div>
-
 @endsection
