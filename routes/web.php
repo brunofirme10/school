@@ -14,39 +14,38 @@
 Auth::routes();
 
 //rota para a home
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('', function () { return view('home'); });
+Route::get('home', function () { return view('home'); });
 
 //rota para a classe Student com autenticação
 Route::group(['middleware' => 'auth', 'prefix' => 'students'], function (){
-    Route::get('/', "StudentController@index");
-    Route::get('/add', 'StudentController@create');
-    Route::post('/', 'StudentController@store');
+    Route::get('', "StudentController@index");
+    Route::get('add', 'StudentController@create');
+    Route::post('', 'StudentController@store');
     Route::get('{id}', 'StudentController@show');
-    Route::get('/edit/{id}', 'StudentController@edit');
+    Route::get('edit/{id}', 'StudentController@edit');
     Route::put('{id}', 'StudentController@update');
     Route::delete('{id}', 'StudentController@destroy');
 });
 
 //rota para a classe Teacher com autenticação
 Route::group(['middleware' => 'auth', 'prefix' => 'teachers'], function (){
-    Route::get('/', "TeacherController@index");
-    Route::get('/add', 'TeacherController@create');
-    Route::post('/', 'TeacherController@store');
+    Route::get('', "TeacherController@index");
+    Route::get('add', 'TeacherController@create');
+    Route::post('', 'TeacherController@store');
     Route::get('{id}', 'TeacherController@show');
-    Route::get('/edit/{id}', 'TeacherController@edit');
+    Route::get('edit/{id}', 'TeacherController@edit');
     Route::put('{id}', 'TeacherController@update');
     Route::delete('{id}', 'TeacherController@destroy');
 });
 
 //rota para a classe Team com autenticação
 Route::group(['middleware' => 'auth', 'prefix' => 'teams'], function (){
-    Route::get('/', "TeamController@index");
-    Route::get('/add', 'TeamController@create');
-    Route::post('/', 'TeamController@store');
+    Route::get('', "TeamController@index");
+    Route::get('add', 'TeamController@create');
+    Route::post('', 'TeamController@store');
     Route::get('{id}', 'TeamController@show');
-    Route::get('/edit/{id}', 'TeamController@edit');
+    Route::get('edit/{id}', 'TeamController@edit');
     Route::put('{id}', 'TeamController@update');
     Route::delete('{id}', 'TeamController@destroy');
 });

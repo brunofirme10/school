@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Teacher;
 use Illuminate\Http\Request;
 use Ausi\SlugGenerator\SlugGenerator;
 
@@ -26,7 +27,8 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('teams.create');
+        $teachers = Teacher::all();
+        return view('teams.create', compact('teachers'));
     }
 
     /**
@@ -75,7 +77,8 @@ class TeamController extends Controller
     public function edit(Team $team, int $id)
     {
         $team = Team::find($id);
-        return view('teams.edit', compact('team'));
+        $teachers = Teacher::all();
+        return view('teams.edit', compact('team', 'teachers'));
     }
 
     /**
