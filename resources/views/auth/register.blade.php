@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<!-- Tela da registro usuario -->
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

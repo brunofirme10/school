@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- Tela de exibição de alunos -->
+<!-- Tela de exibição de turmas -->
 @section('stylecss')
     <style>
         .form-control-static {
@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Contato</div>
-                    <form action="{{ url('students/'.$student->id) }}" method="post" onsubmit="return validate_delete()">
+                    <form action="{{ url('teams/'.$team->id) }}" method="post" onsubmit="return validate_delete()">
                         <div class="card-body">
                             @method('DELETE')
 
@@ -37,16 +37,12 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <label for="nome">Nome completo</label>
-                                        <p class="form-control-static">{{ $student->name }}</p>
+                                        <label for="nome">Turma</label>
+                                        <p class="form-control-static">{{ $team->title }}</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dataNasc">Data Nascimento</label>
-                                        <p class="form-control-static">{{ $student->born_at }}</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="turma">Turma</label>
-                                        <p class="form-control-static">{{ $student->team_id }}</p>
+                                        <label for="professor">Data Nascimento</label>
+                                        <p class="form-control-static">{{ $team->teacher_id }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +50,7 @@
                         <div class="card-footer text-right">
                             <a href="#" onclick="history.back()" class="btn btn-secondary">Voltar</a>
                             <button type="submit" class="btn btn-danger">Excluir</button>
-                            <a href="{{ url('students/edit/'.$student->id) }}" class="btn btn-primary">Editar</a>
+                            <a href="{{ url('teams/edit/'.$team->id) }}" class="btn btn-primary">Editar</a>
                         </div>
                     </form>
                 </div>

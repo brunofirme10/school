@@ -8,18 +8,18 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Função de retorno de dados para a tela home.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $student = Student::all()->sortBy('nome');
+        $student = Student::all()->sortBy('name');
         return view('students.index', compact('students'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Função de criação de um novo aluno.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,7 +29,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Função de gravar novo aluno.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -41,7 +41,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Função de exibir o aluno.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
@@ -49,11 +49,11 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $student = Student::find($id);
-        return view('student.show', ['name' => $student]);
+        return view('students.show', ['name' => $student]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Função de edição do aluno.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
@@ -61,11 +61,11 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $student = Student::find($id);
-        return view('student.edit', ['name' => $student]);
+        return view('students.edit', ['name' => $student]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Função de atualização do aluno.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Student  $student
@@ -80,7 +80,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Função de exclusão do aluno.
      *
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response

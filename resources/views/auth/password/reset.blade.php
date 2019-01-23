@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-
+<!-- Tela de recuperação de email -->
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

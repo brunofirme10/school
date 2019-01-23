@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'School') }}</title>
+    <title>School</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -43,7 +43,7 @@
                     @else
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('home') }}">Alunos <span class="sr-only">(current)
+                        <a class="nav-link" href="{{ url('home') }}">School <span class="sr-only">(current)
                     </li>
 
                     @endguest

@@ -8,60 +8,64 @@ use Illuminate\Http\Request;
 class TeamController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Função de retorno de dados para a tela home.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $team = Team::all()->sortBy('title');
+        return view('teams.index', compact('teams'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Função de criação de uma nova turma.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('teams.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Função de gravar nova turma.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $team = Team::create($request->all());
+        return redirect('teams');
     }
 
     /**
-     * Display the specified resource.
+     * Função de exibir a turma.
      *
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
     {
-        //
+        $team = Team::find($id);
+        return view('teams.show', ['title' => $team]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Função de edição da turma.
      *
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
     {
-        //
+        $team = Team::find($id);
+        return view('teams.edit', ['title' => $team]);
     }
 
     /**
-     * Update the specified resource in storage.
+     *  Função de atualização da turma.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Team  $team
@@ -69,17 +73,21 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $team = Team::find($id);
+        $team->fill($request->all());
+        $team->update();
+        return redirect('teams');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Função de exclusão da turma.
      *
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function destroy(Team $team)
     {
-        //
+        Team::destroy($id);
+        return redirect('teams');
     }
 }

@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Contato</div>
-                    <form action="{{ url('students/'.$student->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('teachers/'.$teacher->id) }}" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                             @method('PUT')
 
@@ -14,19 +14,15 @@
 
                             <div class="form-group">
                                 <label for="name">Nome completo</label>
-                                <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name', $data->name) }}" id="name" name="name">
+                                <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name', $teachers->name) }}" id="name" name="name">
                                 <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                             </div>
                             <div class="form-group">
-                                <label for="date">Data Nascimento</label>
-                                <input type="datetime" class="form-control{{$errors->has('born_at') ? ' is-invalid':''}}" value="{{ old('born_at', $data->born_at) }}" id="born_at" name="born_at">
-                                <div class="invalid-feedback">{{ $errors->first('born_at') }}</div>
+                                <label for="date">Especialidade</label>
+                                <input type="datetime" class="form-control{{$errors->has('knowledge') ? ' is-invalid':''}}" value="{{ old('knowledge', $teachers->knowledge) }}" id="knowledge" name="knowledge">
+                                <div class="invalid-feedback">{{ $errors->first('knowledge') }}</div>
                             </div>
-                            <div class="form-group">
-                                <label for="team_id">Turma</label>
-                                <input type="text" required class="form-control{{$errors->has('team_id') ? ' is-invalid':''}}" value="{{ old('team_id', $data->team_id) }}" id="team_id" name="team_id">
-                                <div class="invalid-feedback">{{ $errors->first('team_id') }}</div>
-                            </div>
+                        </div>
                         </div>
                         <div class="card-footer text-right">
                             <a href="#" onclick="history.back()" class="btn btn-secondary">Voltar</a>

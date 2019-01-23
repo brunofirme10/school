@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- Tela inicial de estudante -->
+<!-- Tela inicial de professor -->
 @section('stylecss')
     <style media="screen">
         .img-avatar-xs {
@@ -20,18 +20,17 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Estudantes
-                <a href="{{ url('students/add') }}" class="btn btn-primary btn-sm float-right">Novo</a>
+                Professores
+                <a href="{{ url('teachers/add') }}" class="btn btn-primary btn-sm float-right">Novo</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive border-0">
                     <table class="table table-hover" style="margin-bottom: inherit">
                         <tbody>
-                        @foreach ($students as $student)
+                        @foreach ($teachers as $teacher)
                             <tr>
-                                <td><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->name }}</a></td>
-                                <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->born_at }}</a></td>
-                                <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->team_id }}</a></td>
+                                <td><a class='a-line' href="{{ url('teachers/'.$teacher->id) }}">{{ $teacher->name }}</a></td>
+                                <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('teachers/'.$teacher->id) }}">{{ $teacher->knowledge }}</a></td>
                             </tr>
                         @endforeach
                         </tbody>

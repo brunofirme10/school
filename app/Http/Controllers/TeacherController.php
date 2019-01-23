@@ -8,60 +8,64 @@ use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Função de retorno de dados para a tela home.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $teacher = Teacher::all()->sortBy('name');
+        return view('teachers.index', compact('teachers'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Função de criação de um novo professor.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('teachers.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Função de gravar novo professor.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $teacher = Teacher::create($request->all());
+        return redirect('teachers');
     }
 
     /**
-     * Display the specified resource.
+     * Função de exibir o professor.
      *
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function show(Teacher $teacher)
     {
-        //
+        $teacher = Teacher::find($id);
+        return view('teachers.show', ['name' => $teacher]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Função de edição do professor.
      *
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function edit(Teacher $teacher)
     {
-        //
+        $teacher = Teacher::find($id);
+        return view('teachers.edit', ['name' => $teacher]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Função de atualização do professor.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Teacher  $teacher
@@ -69,17 +73,21 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $teacher = Teacher::find($id);
+        $teacher->fill($request->all());
+        $teacher->update();
+        return redirect('teachers');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Função de exclusão do professor.
      *
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        Teacher::destroy($id);
+        return redirect('teachers');
     }
 }
