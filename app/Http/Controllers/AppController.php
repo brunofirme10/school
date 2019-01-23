@@ -6,5 +6,13 @@ use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
-    //
+
+	/**
+	 * index
+	 */
+	public function index()
+	{
+		return view('home');
+	}
+
 }
