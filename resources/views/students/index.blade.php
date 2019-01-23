@@ -24,19 +24,42 @@
                 <a href="{{ url('students/add') }}" class="btn btn-primary btn-sm float-right">Novo</a>
             </div>
             <div class="card-body p-0">
+@if($students->count() > 0)
                 <div class="table-responsive border-0">
-                    <table class="table table-hover" style="margin-bottom: inherit">
-                        <tbody>
-                        @foreach ($students as $student)
+                    <table class="table table-hover text-center" style="margin-bottom: inherit">
+                        <thead>
                             <tr>
-                                <td><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->name }}</a></td>
-                                <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->born_at }}</a></td>
-                                <td class="d-none d-md-table-cell"><a class='a-line' href="{{ url('students/'.$student->id) }}">{{ $student->team_id }}</a></td>
+                                <th>Nome completo</th>
+                                <th>Nascido em</th>
+                                <th>Turma</th>
+                                <th>Ações</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+@foreach($students as $student)
+                            <tr>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->born_at }}</td>
+                                <td>#{{ $student->team->id }} - {{ $student->team->title }}</td>
+                                <td>
+                                    <form action="{{ url('students/'.$student->id) }}" method="post" onsubmit="return validate_delete()">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <a href="{{ url('students/'.$student->id) }}" class="btn btn-dark btn-sm">Ver</a>
+                                        <a href="{{ url('students/edit/'.$student->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+@endforeach
                         </tbody>
                     </table>
                 </div>
+@else
+                <div class="text-center">
+                    Não há nenhum estudante cadastrado
+                </div>
+@endif
             </div>
         </div>
     </div>

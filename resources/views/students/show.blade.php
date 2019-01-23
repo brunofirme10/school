@@ -34,12 +34,12 @@
                                     <p class="form-control-static">{{ $student->name }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dataNasc">Data Nascimento</label>
+                                    <label for="dataNasc">Nascido em</label>
                                     <p class="form-control-static">{{ $student->born_at }}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="turma">Turma</label>
-                                    <p class="form-control-static">{{ $student->team_id }}</p>
+                                    <p class="form-control-static">#{{ $student->team->id }} - {{ $student->team->title }}</p>
                                 </div>
                             </div>
                         </div>

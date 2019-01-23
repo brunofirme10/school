@@ -19,12 +19,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Data Nascimento</label>
-                                <input type="datetime" class="form-control{{$errors->has('born_at') ? ' is-invalid':''}}" value="{{ old('born_at', $student->born_at) }}" id="born_at" name="born_at" />
+                                <input type="date" class="form-control{{$errors->has('born_at') ? ' is-invalid':''}}" value="{{ old('born_at', $student->born_at) }}" id="born_at" name="born_at" />
                                 <div class="invalid-feedback">{{ $errors->first('born_at') }}</div>
                             </div>
                             <div class="form-group">
                                 <label for="team_id">Turma</label>
-                                <input type="text" required class="form-control{{$errors->has('team_id') ? ' is-invalid':''}}" value="{{ old('team_id', $student->team_id) }}" id="team_id" name="team_id" />
+                                <select class="form-control{{$errors->has('team_id') ? ' is-invalid':''}}" id="team_id" name="team_id">
+                                    <option selected disabled>Escolha uma turma</option>
+@foreach($teams as $team)
+@if($student->team_id === $team->id)
+                                    <option value="{{ $team->id }}" selected>#{{ $team->id }} - {{ $team->title }}</option>
+@else
+                                    <option value="{{ $team->id }}">#{{ $team->id }} - {{ $team->title }}</option>
+@endif
+@endforeach
+                                </select>
                                 <div class="invalid-feedback">{{ $errors->first('team_id') }}</div>
                             </div>
                         </div>

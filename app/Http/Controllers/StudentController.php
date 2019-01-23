@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Team;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -25,7 +26,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $teams = Team::all();
+        return view('students.create', compact('teams'));
     }
 
     /**
@@ -61,7 +63,8 @@ class StudentController extends Controller
     public function edit(Student $student, int $id)
     {
         $student = Student::find($id);
-        return view('students.edit', compact('student'));
+        $teams = Team::all();
+        return view('students.edit', compact('student', 'teams'));
     }
 
     /**
