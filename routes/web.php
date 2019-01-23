@@ -11,7 +11,7 @@
 |
 */
 //rotas de autenticação de usuário
-Auth::routes();
+Auth::routes(["register" => false]);
 
 //rota para a home
 Route::get('', function () { return view('home'); });
