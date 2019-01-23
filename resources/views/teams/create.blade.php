@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <a href="#" onclick="history.back()" class="btn btn-secondary">Voltar</a>
+                            <a href="javascript:void(0)" onclick="history.back()" class="btn btn-secondary">Voltar</a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </form>

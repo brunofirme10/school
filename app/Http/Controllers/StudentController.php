@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all()->sortBy('name');
+        $students = Student::all()->sortBy('name');
         return view('students.index', compact('students'));
     }
 
@@ -46,10 +46,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Student $student, int $id)
     {
         $student = Student::find($id);
-        return view('students.show', ['name' => $student]);
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -58,10 +58,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Student $student, int $id)
     {
         $student = Student::find($id);
-        return view('students.edit', ['name' => $student]);
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -71,7 +71,7 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Student $student, int $id)
     {
         $student = Student::find($id);
         $student->fill($request->all());
@@ -85,7 +85,7 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Student $student, int $id)
     {
         Student::destroy($id);
         return redirect('students');

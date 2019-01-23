@@ -20,7 +20,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Estudantes
+                Listar estudantes
                 <a href="{{ url('students/add') }}" class="btn btn-primary btn-sm float-right">Novo</a>
             </div>
             <div class="card-body p-0">
