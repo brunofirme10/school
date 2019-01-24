@@ -69,3 +69,10 @@
     </div>
 </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+<script src="/js/jqBootstrapValidation.js"></script>
+
+<script>
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
