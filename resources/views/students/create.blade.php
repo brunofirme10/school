@@ -11,7 +11,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="form-group">
                                 <label for="name">Nome completo</label>
-                                <input type="text" required class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name') }}" id="name" name="name" required min:3 max:255/>
+                                <input type="text" class="form-control{{$errors->has('name') ? ' is-invalid':''}}" value="{{ old('name') }}" id="name" name="name" required min:3 max:255/>
                                 <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                             </div>
                             <div class="form-group">
